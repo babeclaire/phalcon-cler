@@ -1,8 +1,8 @@
 <?php
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
- use \Phalcon\Paginator\Adapter\QueryBuilder as PaginacionBuilder;
 
+use \Phalcon\Paginator\Adapter\QueryBuilder as PaginacionBuilder;
 class NoticeController extends \Phalcon\Mvc\Controller
 {
 
@@ -168,10 +168,8 @@ class NoticeController extends \Phalcon\Mvc\Controller
                 "controller" => "notice",
                 "action" => "index"
             ]);
-
             return;
         }
-
         $paginator = new Paginator([
             'data' => $notice,
             'limit'=> 10,
