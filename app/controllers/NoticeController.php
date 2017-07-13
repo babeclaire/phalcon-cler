@@ -112,22 +112,20 @@ class NoticeController extends \Phalcon\Mvc\Controller
             $this->tag->setDefault("author", $notice->author);
             $this->tag->setDefault("created_date", $notice->created_date);
             $this->tag->setDefault("updated_date", $notice->updated_date);
-            
         
     }
      public function deleteAction($id)
     {
         $notice = Notice::findFirstByid($id);
-        $notice->soft_delete = 1;
         if (!$notice) {
             $this->flash->error("Notice was not found");
             $this->dispatcher->forward([
-                'controller' => "notices",
+                'controller' => "notice",
                 'action' => 'index'
             ]);
-
             return;
         }
+         $notice->soft_delete = 1;
         if (!$notice->update()) {
 
             foreach ($notice->getMessages() as $message) {
